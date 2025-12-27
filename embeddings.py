@@ -2,6 +2,7 @@ from typing import List, Dict, Tuple
 import numpy as np
 import faiss
 from sentence_transformers import SentenceTransformer
+from sklearn.decomposition import PCA
 
 class EmbedCluster:
     def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
@@ -26,7 +27,19 @@ class EmbedCluster:
         if self.embeddings is None:
             raise ValueError("Call fit() first.")
         d = self.embeddings.shape[1]
+        
+        # Safety check: K cannot be larger than number of samples
+        k = min(k, len(self.embeddings))
+        
         kmeans = faiss.Kmeans(d, k, niter=25, verbose=False, spherical=True)
         kmeans.train(self.embeddings)
         D, I = kmeans.index.search(self.embeddings, 1)
         return I.reshape(-1), kmeans.centroids
+
+    # NEW FUNCTION: Reduces dimensions for Plotly visualization
+    def reduce_dimensions(self) -> np.ndarray:
+        if self.embeddings is None:
+            raise ValueError("Call fit() first.")
+        # Reduce to 2 components (2D) for plotting
+        pca = PCA(n_components=2)
+        return pca.fit_transform(self.embeddings)
