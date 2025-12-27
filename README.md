@@ -16,8 +16,8 @@ It uses **Unsupervised Learning (K-Means)** to cluster documents by theme, visua
 
 * **🗂️ Hybrid Data Ingestion:** Seamlessly merges live Arxiv search results with user-uploaded PDFs into a single vector index.
 * **🧠 Dual-Engine Intelligence:**
-    * **Cloud Mode:** Uses Google Gemini 1.5 Flash for high-speed, high-context reasoning.
-    * **Local Mode:** Uses Ollama (Llama 3) for offline, privacy-centric analysis.
+    * **Cloud Mode:** Uses Google Gemini 2.5 Flash for high-speed, high-context reasoning.
+    * **Local Mode:** Uses Ollama (Gemma 3) for offline, privacy-centric analysis.
 * **🗺️ Semantic Visualization:** Projects high-dimensional embeddings into a 2D interactive map (using PCA) to identify research clusters and outliers visually.
 * **🤖 Automated Synthesis:** Generates thematic literature reviews for specific clusters on-demand, saving token costs.
 * **💬 Context-Aware Chat:** A chat interface that cites sources (e.g., "Doc 1", "Upload") to ensure hallucination-free answers.
